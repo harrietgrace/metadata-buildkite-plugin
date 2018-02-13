@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# read meta-data from buildkite-agent
+# parse a list of parameters to get and set ENV_VAR_TO_SET: <metadata to get>
+# support cross-job meta-data by supporting the --job key

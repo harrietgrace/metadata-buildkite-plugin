@@ -1,0 +1,6 @@
+{
+    "name": "meta-data",
+    "description": "Loads data from buildkite meta-data into the environment before commands are run",
+    "author": "@roblugton",
+    "public": true
+  }
