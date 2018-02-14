@@ -59,6 +59,18 @@ export BUILDKITE_AGENT_STUB_DEBUG=/dev/tty
   unset BUILDKITE_PLUGIN_METADATA_GETREMOTE_0
 }
 
+@test "Fail if attempting to fetch remote meta-data without remoteJobId set" {
+  export BUILDKITE_PLUGIN_METADATA_GETREMOTE_0=BUILD_ID
+
+  run $PWD/hooks/pre-command
+
+  assert_failure
+  assert_output "Missing remoteJobId value when attempting to fetch remote meta-data"
+
+  unset BUILDKITE_PLUGIN_METADATA_REMOTEJOBID
+  unset BUILDKITE_PLUGIN_METADATA_GETREMOTE_0
+}
+
 @test "Fetch meta-data value from both local and remote pipeline" {
   export BUILDKITE_PLUGIN_METADATA_GET_0=BUILD_ID
   export BUILDKITE_PLUGIN_METADATA_GETREMOTE_0=VERSION_NUMBER
