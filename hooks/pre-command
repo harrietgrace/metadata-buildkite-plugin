@@ -13,6 +13,7 @@ fi
 while IFS='=' read -r name _ ; do
   if [[ $name =~ ^(BUILDKITE_PLUGIN_METADATA_GET_[0-9]+) ]] ; then
     echo "fetching meta-data value [${!name}]"
+    echo "reading meta-data from current pipeline"
     metadata_value=$(buildkite-agent meta-data get ${!name})
     echo "export ${!name}=$metadata_value"
     export ${!name}=$metadata_value  
@@ -23,8 +24,8 @@ while IFS='=' read -r name _ ; do
       exit 1
     else
       job_switch="--job $BUILDKITE_PLUGIN_METADATA_REMOTEJOBID"
-      echo "reading meta-data from job id '$BUILDKITE_PLUGIN_METADATA_REMOTEJOBID'"
       echo "fetching meta-data value [${!name}]"
+      echo "reading meta-data from job id '$BUILDKITE_PLUGIN_METADATA_REMOTEJOBID'"
       echo "buildkite-agent meta-data get ${!name} $job_switch"
       metadata_value=$(buildkite-agent meta-data get ${!name} $job_switch)
       echo "export ${!name}=$metadata_value"
