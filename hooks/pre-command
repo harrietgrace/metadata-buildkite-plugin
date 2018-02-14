@@ -6,7 +6,7 @@ set -euo pipefail
 # parse a list of parameters to get and set ENV_VAR_TO_SET: <metadata to get>
 # support cross-job meta-data by supporting the --job key
 job_switch=''
-if [[ -n "$BUILDKITE_PLUGIN_METADATA_JOBID" ]] ; then
+if [[ -n "${BUILDKITE_PLUGIN_METADATA_JOBID:-}" ]] ; then
     job_switch="--job $BUILDKITE_PLUGIN_METADATA_JOBID"
     echo "job_switch: $job_switch"
     echo "reading meta-data from job id '$BUILDKITE_PLUGIN_METADATA_JOBID'"
