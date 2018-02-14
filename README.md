@@ -22,7 +22,9 @@ steps:
   - command: ./scripts/build.sh
     plugins:
       metadata#v0.0.1:
+        remoteJobid: ${SOURCE_JOB_ID}
         get:
-          job: ${SOURCE_JOB_ID}
             - BUILD_ID
+        getRemote:
+            - VERSION_NUMBER
 ```
