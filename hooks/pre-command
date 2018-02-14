@@ -17,7 +17,6 @@ while IFS='=' read -r name _ ; do
     echo "fetching meta-data value [${!name}]"
     metadata_value=$(buildkite-agent meta-data get ${!name} $job_switch)
     echo "export ${!name}=$metadata_value"
-    export ${!name}=$metadata_value
-    
-   fi
+    export ${!name}=$metadata_value  
+  fi
 done < <(env | sort)
