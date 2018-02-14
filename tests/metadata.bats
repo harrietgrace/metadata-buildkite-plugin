@@ -6,7 +6,6 @@ load "$BATS_PATH/load.bash"
 # export BUILDKITE_AGENT_STUB_DEBUG=/dev/tty
 
 @test "Fetch single meta-data value from build-agent" {
-  export BUILDKITE_PLUGIN_METADATA_JOBID=
   export BUILDKITE_PLUGIN_METADATA_GET_0=BUILD_ID
 
   stub buildkite-agent \
@@ -19,12 +18,10 @@ load "$BATS_PATH/load.bash"
 
   unstub buildkite-agent
 
-  unset BUILDKITE_PLUGIN_METADATA_JOBID
   unset BUILDKITE_PLUGIN_METADATA_GET_0
 }
 
 @test "Fetch multiple meta-data values from build-agent" {
-  export BUILDKITE_PLUGIN_METADATA_JOBID=
   export BUILDKITE_PLUGIN_METADATA_GET_0=BUILD_ID
   export BUILDKITE_PLUGIN_METADATA_GET_1=APP_ENDPOINT
 
@@ -40,7 +37,6 @@ load "$BATS_PATH/load.bash"
 
   unstub buildkite-agent
 
-  unset BUILDKITE_PLUGIN_METADATA_JOBID
   unset BUILDKITE_PLUGIN_METADATA_GET_0
   unset BUILDKITE_PLUGIN_METADATA_GET_1
 }
