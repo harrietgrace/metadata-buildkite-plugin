@@ -10,9 +10,9 @@ The following example gets the `APP_ENDPOINT` meta-data value from the current p
 steps: 
   - command: ./scripts/build.sh
     plugins:
-      metadata#v0.0.1:
-        get:
-          - APP_ENDPOINT
+      - metadata#v0.0.1:
+          get:
+            - APP_ENDPOINT
 ```
 
 The following example gets `VERSION_NUMBER` from the a triggering build ,which pass through it's `BUILDKITE_JOB_ID` as `SOURCE_JOB_ID`, and sets it to `VERSION_NUMBER` on the buildkite agent environment. The job id needs to be passed in to the current pipeline. 
@@ -21,9 +21,9 @@ The following example gets `VERSION_NUMBER` from the a triggering build ,which p
 steps: 
   - command: ./scripts/build.sh
     plugins:
-      metadata#v0.0.1:
-        remoteJobid: ${SOURCE_JOB_ID}
-        getRemote:
+      - metadata#v0.0.1:
+          remoteJobid: ${SOURCE_JOB_ID}
+          getRemote:
             - VERSION_NUMBER
 ```
 
@@ -33,12 +33,12 @@ The following example gets `VERSION_NUMBER` from another pipeline, and `BUILD_ID
 steps: 
   - command: ./scripts/build.sh
     plugins:
-      metadata#v0.0.1:
-        remoteJobid: ${SOURCE_JOB_ID}
-        getRemote:
-          - VERSION_NUMBER
-        get:
-          - BUILD_ID
+      - metadata#v0.0.1:
+          remoteJobid: ${SOURCE_JOB_ID}
+          getRemote:
+            - VERSION_NUMBER
+          get:
+            - BUILD_ID
 ```
 ## Configuration
 
